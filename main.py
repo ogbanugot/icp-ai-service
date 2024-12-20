@@ -6,12 +6,13 @@ from fastapi import Request
 from slowapi import Limiter
 from slowapi.util import get_remote_address
 
-from schema import CVAnalysisRequest, GrammarAnalysisRequest, MealPlanRequest
+from schema import CVAnalysisRequest, GrammarAnalysisRequest, MealPlanRequest, JobReadiness
 from services.cv import cv_cmd, CVAnalysis
 from services.grammar import grammar_cmd, GrammarAnalysis
 from services.diet import meal_plan_cmd, MealPlan
 from services.ml import main
 from dotenv import load_dotenv
+from services.cv_enhancer import enhancer_agent
 
 load_dotenv()
 
@@ -77,5 +78,18 @@ def meal_plan(
             return data[0]
         else:
             raise HTTPException(status_code=500, detail="error during function call")
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+    
+
+@app.post("/cv-enhancer")
+@limiter.limit("10/minute")
+def cv_analysis(
+        request: Request,
+        data: CVAnalysisRequest
+) -> JobReadiness:
+    try:
+        result = enhancer_agent(data)
+        return result
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
