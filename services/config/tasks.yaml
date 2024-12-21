@@ -1,0 +1,60 @@
+job_analysis:
+  description: >
+    Analyze the job provided job description to extract key skills, 
+    experiences, and qualifications required.
+    Focus on skills, experience, education, and key achievements.
+
+    Job description: {job_description}
+  expected_output: >
+    A structured list of job requirements, including necessary:
+    - Skills
+    - Qualifications
+    - Experiences
+
+profile:
+  description: >
+    Extract relevant information from the given CV. Focus on skills, experience,
+    education, and key achievements.
+    Ensure to capture the candidate's professional summary, technical skills,
+    work history, and educational background.
+
+    Applicant CV: {applicant_cv}
+  expected_output: >
+    A comprehensive profile document that includes skills, project experiences, 
+    contributions, interests, and communication style.
+
+strategy:
+  description: >
+    Using the profile and job requirements obtained from 
+    previous tasks, tailor the resume to highlight the most 
+    relevant areas. Adjust and enhance the 
+    resume content. Make sure this is the best resume, but 
+    don't make up any information. Update every section, 
+    including the initial summary, work experience, skills, 
+    and education. All to better reflect the candidates 
+    abilities and how it matches the job description.
+  expected_output: >
+    An updated resume that effectively highlights the candidate's 
+    qualifications and experiences relevant to the job.
+
+ats_evaluation:
+  description: >
+    Using the resume created by the previous tasks, with a score from 0 to 100, indicate how well they fit the role.
+    Your final answer MUST include:
+    - A score between 1 and 100. Don't use numbers like 100, 75, or 50. Instead, use specific numbers like 87, 63, or 42.
+    - A detailed reasoning, considering the candidate's skill match, experience, cultural fit, and growth potential.
+  expected_output: >
+    A very specific score from 1 to 100 for the candidate, 
+    along with a detailed reasoning explaining why you assigned this score.
+
+interview_preparation:
+  description: >
+    Create a set of potential interview questions and talking 
+    points based on the tailored resume and job requirements. 
+    Utilize tools to generate relevant questions and discussion 
+    points. Make sure to use these question and talking points to 
+    help the candiadte highlight the main points of the resume 
+    and how it matches the job description.
+  expected_output: >
+    A document containing key questions and talking points 
+    that the candidate should prepare for the initial interview.

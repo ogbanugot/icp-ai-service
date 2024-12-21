@@ -41,7 +41,9 @@ def get_tool_call(command: str) -> Optional[List[ChatCompletionMessageToolCall]]
         model=model_name,
         messages=messages,
         tools=tools,
-        tool_choice="auto",
+        tool_choice="auto"
+        #temperature=0.3,
+        #max_tokens=500,
     )
     response_message = response.choices[0].message
     tool_calls = response_message.tool_calls

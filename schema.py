@@ -1,10 +1,9 @@
 from typing import List
 
-from pydantic import BaseModel
-
+from pydantic import BaseModel, Field
 
 class CVAnalysisRequest(BaseModel):
-    job_title: str
+    job_title: str = ""
     experience_years: str = ""
     skills: str = ""
     current_role: str = ""
@@ -62,3 +61,11 @@ class MealPlanRequest(BaseModel):
     meal_title: str
     user_preferences: UserPreferences
     nutritional_goals: NutritionalGoals
+
+class JobReadiness(BaseModel):
+	"""Job readiness model"""
+	enhanced_cv: str = Field(..., description="Created enhanced cv by strategist agent")
+	#original_ats_score: str = Field(..., description="Original cv ats score")
+	enhanced_ats_score: str = Field(..., description="Enhanced cv ats score by ats evaluator agent")
+	interview_prep: str = Field(..., description="Interview preparation questions by interview preparer agent")
+

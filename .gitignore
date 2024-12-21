@@ -5,6 +5,8 @@ __pycache__/
 .idea/
 fly-secrets.sh
 
+.DS_Store
+
 # weight files
 *.pt
 
