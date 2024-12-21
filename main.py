@@ -1,8 +1,8 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Request
+from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from slowapi import _rate_limit_exceeded_handler
 from slowapi.errors import RateLimitExceeded
-from fastapi import Request
 from slowapi import Limiter
 from slowapi.util import get_remote_address
 
@@ -31,51 +31,51 @@ app.add_middleware(
 
 
 @app.post("/cv-analysis")
-@limiter.limit("10/minute")
+@limiter.limit("300/minute")
 def cv_analysis(
         request: Request,
         data: CVAnalysisRequest
-) -> CVAnalysis:
+) -> JSONResponse:
     try:
         cmd = cv_cmd(data)
-        data = main(cmd)
-        if len(data) >= 1:
-            return data[0]
+        response_data = main(cmd)
+        if len(response_data) >= 1:
+            return JSONResponse(content=response_data[0].dict(), media_type="application/json")
         else:
-            raise HTTPException(status_code=500, detail="error during function call")
+            raise HTTPException(status_code=500, detail="Error during function call")
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
 
 @app.post("/grammar-analysis")
-@limiter.limit("10/minute")
+@limiter.limit("300/minute")
 def grammar_analysis(
         request: Request,
         data: GrammarAnalysisRequest
-) -> GrammarAnalysis:
+) -> JSONResponse:
     try:
         cmd = grammar_cmd(data)
-        data = main(cmd)
-        if len(data) >= 1:
-            return data[0]
+        response_data = main(cmd)
+        if len(response_data) >= 1:
+            return JSONResponse(content=response_data[0].dict(), media_type="application/json")
         else:
-            raise HTTPException(status_code=500, detail="error during function call")
+            raise HTTPException(status_code=500, detail="Error during function call")
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
 
 @app.post("/meal-plan")
-@limiter.limit("10/minute")
+@limiter.limit("300/minute")
 def meal_plan(
         request: Request,
         data: MealPlanRequest
-) -> MealPlan:
+) -> JSONResponse:
     try:
         cmd = meal_plan_cmd(data)
-        data = main(cmd)
-        if len(data) >= 1:
-            return data[0]
+        response_data = main(cmd)
+        if len(response_data) >= 1:
+            return JSONResponse(content=response_data[0].dict(), media_type="application/json")
         else:
-            raise HTTPException(status_code=500, detail="error during function call")
+            raise HTTPException(status_code=500, detail="Error during function call")
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
