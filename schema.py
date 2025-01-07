@@ -9,6 +9,7 @@ class CVAnalysisRequest(BaseModel):
     current_role: str = ""
     job_description: str
     cv_text: str
+    cv_template: str
 
 
 class GrammarAnalysisRequest(BaseModel):

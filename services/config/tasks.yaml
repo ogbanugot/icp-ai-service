@@ -33,9 +33,13 @@ strategy:
     including the initial summary, work experience, skills, 
     and education. All to better reflect the candidates 
     abilities and how it matches the job description.
+    Analyse the below resume template which is in markdown format, think deeply and 
+    make sure that the resume you create conform to it:
+    {cv_template}
   expected_output: >
     An updated resume that effectively highlights the candidate's 
-    qualifications and experiences relevant to the job.
+    qualifications and experiences relevant to the job. 
+    The output must be in a markdown format.
 
 ats_evaluation:
   description: >

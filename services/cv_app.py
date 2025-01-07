@@ -2,6 +2,11 @@ from cv_crew import ResumeCrew
 
 resume_crew = ResumeCrew()
 
+template_file = f"templates/ng.md"
+
+with open(template_file, 'r') as f:
+    cv_template = f.read()
+
 inputs = {
     'job_description': """
         Job Description:
@@ -107,7 +112,8 @@ inputs = {
         References:
 
         Available upon request.
-        """
+        """,
+    'cv_template': cv_template,
     }
 
 def kickoff():

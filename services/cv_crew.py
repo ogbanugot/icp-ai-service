@@ -10,7 +10,7 @@ from schema import JobReadiness
 
 openai_api_key = get_openai_api_key()
 model_name = os.getenv("MODEL_NAME")
-os.environ["OPENAI_MODEL_NAME"] = f"openai/{model_name  }"
+os.environ["OPENAI_MODEL_NAME"] = f"openai/{model_name}"
 os.environ["OPENAI_API_KEY"] = os.getenv("UNIFY_API_KEY")
 os.environ["OPENAI_BASE_URL"] = os.getenv("UNIFY_URL")
 
@@ -24,6 +24,8 @@ class ResumeCrew:
     strategy_task = Task
     ats_evaluation_task = Task
     interview_preparation_task = Task
+
+    cv_templates = ["NG","EU","CA","US","DEFAULT"]
 
     enhanced_cv = ""
 	#original_ats_score: str = ""
