@@ -47,6 +47,7 @@ ats_evaluation:
     Your final answer MUST include:
     - A score between 1 and 100. Don't use numbers like 100, 75, or 50. Instead, use specific numbers like 87, 63, or 42.
     - A detailed reasoning, considering the candidate's skill match, experience, cultural fit, and growth potential.
+    - The output must follow this format: score >> reason
   expected_output: >
     A very specific score from 1 to 100 for the candidate, 
     along with a detailed reasoning explaining why you assigned this score.
